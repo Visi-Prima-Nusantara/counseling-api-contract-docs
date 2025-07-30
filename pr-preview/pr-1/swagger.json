@@ -1,0 +1,1350 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"CounselingPaginatedResponseEnvelope_any_": {
+				"properties": {
+					"code": {
+						"type": "number",
+						"format": "double",
+						"description": "HTTP Response code"
+					},
+					"error": {
+						"type": "boolean",
+						"description": "Error flag"
+					},
+					"message": {
+						"type": "string",
+						"description": "Message"
+					},
+					"count": {
+						"type": "number",
+						"format": "double",
+						"description": "Total number of items"
+					},
+					"total_items": {
+						"type": "number",
+						"format": "double",
+						"description": "Total number of items"
+					},
+					"next": {
+						"type": "string",
+						"description": "Url of the next page"
+					},
+					"previous": {
+						"type": "string",
+						"description": "Url of the previous page"
+					},
+					"page_size": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"items": {},
+						"type": "array"
+					}
+				},
+				"required": [
+					"code",
+					"error",
+					"message",
+					"count",
+					"total_items",
+					"next",
+					"previous",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ResponseEnvelope_any_": {
+				"properties": {
+					"code": {
+						"type": "number",
+						"format": "double",
+						"description": "HTTP Response code"
+					},
+					"error": {
+						"type": "boolean",
+						"description": "Error flag"
+					},
+					"message": {
+						"type": "string",
+						"description": "Message"
+					},
+					"data": {}
+				},
+				"required": [
+					"code",
+					"error",
+					"message",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ResponseEnvelope_null_": {
+				"properties": {
+					"code": {
+						"type": "number",
+						"format": "double",
+						"description": "HTTP Response code"
+					},
+					"error": {
+						"type": "boolean",
+						"description": "Error flag"
+					},
+					"message": {
+						"type": "string",
+						"description": "Message"
+					},
+					"data": {
+						"type": "number",
+						"enum": [
+							null
+						],
+						"nullable": true
+					}
+				},
+				"required": [
+					"code",
+					"error",
+					"message",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BullyingType": {
+				"description": "Types of bullying, `PHYSICAL = 0`, `VERBAL = 1`, `SOCIAL = 2`, `CYBER = 3`, `OTHER = 4`",
+				"enum": [
+					"0",
+					"1",
+					"2",
+					"3",
+					"4"
+				],
+				"type": "string"
+			},
+			"BullyingReportStatus": {
+				"description": "Status of the bullying report, `REVIEW = 0`, `FOLLOW_UP = 1`, `DONE = 2`, `REJECTED = 3`",
+				"enum": [
+					"0",
+					"1",
+					"2",
+					"3"
+				],
+				"type": "string"
+			},
+			"BullyingReportItem": {
+				"properties": {
+					"rejection_reason": {
+						"type": "string",
+						"description": "Report rejection reason if the status is REJECTED"
+					},
+					"status": {
+						"$ref": "#/components/schemas/BullyingReportStatus"
+					},
+					"other_type": {
+						"type": "string",
+						"description": "Custom type of bullying, if there are any other types of bullying that are not in the predefined types otherwise empty string",
+						"example": "Jomblo bullying"
+					},
+					"types": {
+						"items": {
+							"$ref": "#/components/schemas/BullyingType"
+						},
+						"type": "array",
+						"description": "`PHYSICAL = 0`, `VERBAL = 1`, `SOCIAL = 2`, `CYBER = 3`, `OTHER = 4`"
+					},
+					"date": {
+						"type": "string",
+						"description": "ISO 8601 date string, e.g. \"2023-10-01T12:00:00Z\""
+					},
+					"id": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"status",
+					"other_type",
+					"types",
+					"date",
+					"id"
+				],
+				"type": "object"
+			},
+			"PaginatedResponseEnvelope_BullyingReportItem_": {
+				"properties": {
+					"error": {
+						"type": "boolean",
+						"description": "Error flag"
+					},
+					"message": {
+						"type": "string",
+						"description": "Message"
+					},
+					"total_items": {
+						"type": "number",
+						"format": "double",
+						"description": "Total number of items"
+					},
+					"array_count": {
+						"type": "number",
+						"format": "double",
+						"description": "Total number of items in the current page"
+					},
+					"page_size": {
+						"type": "number",
+						"format": "double"
+					},
+					"next": {
+						"type": "string",
+						"description": "Url of the next page"
+					},
+					"previous": {
+						"type": "string",
+						"description": "Url of the previous page"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/BullyingReportItem"
+						},
+						"type": "array"
+					},
+					"extra_data": {
+						"description": "Extra data that can be used for other purposes"
+					}
+				},
+				"required": [
+					"error",
+					"message",
+					"total_items",
+					"array_count",
+					"page_size",
+					"next",
+					"previous",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BullyingLocation": {
+				"description": "Location of the bullying incident, `CLASSROOM = 0`, `CANTEEN = 1`, `SCHOOL_YARD = 2`, `TOILET = 3`, `OTHER = 4`",
+				"enum": [
+					"0",
+					"1",
+					"2",
+					"3",
+					"4"
+				],
+				"type": "string"
+			},
+			"BullyingReport": {
+				"properties": {
+					"is_addressed_to_me": {
+						"type": "boolean",
+						"description": "Whether the report is addressed to the current user or not, This is used to determine if the report is for the current user or not, e.g. if the user is aa admin and the report is addressed to the admin, this will be true.",
+						"example": true
+					},
+					"rejection_reason": {
+						"type": "string",
+						"description": "Report rejection reason if the status is REJECTED"
+					},
+					"attachment": {
+						"type": "string",
+						"description": "Attachment URL (Can be empty, if there is no attachment)",
+						"example": "https://example.com/attachment.jpg"
+					},
+					"description": {
+						"type": "string",
+						"description": "Description of the incident (Can be empty)",
+						"example": "I was bullied by Jane Doe in the classroom."
+					},
+					"has_witness": {
+						"type": "boolean"
+					},
+					"victim_name": {
+						"type": "string",
+						"description": "Name of the victim (Can be empty)",
+						"example": "Budi"
+					},
+					"perpetrator_name": {
+						"type": "string",
+						"description": "Name of the perpetrator (Can be empty)",
+						"example": "Jane Doe"
+					},
+					"other_location": {
+						"type": "string",
+						"description": "Custom locations of the incident, if there are any other locations that are not in the predefined locations otherwise empty string",
+						"example": "Other location"
+					},
+					"locations": {
+						"items": {
+							"$ref": "#/components/schemas/BullyingLocation"
+						},
+						"type": "array",
+						"description": "Locations of the incident, can be `CLASSROOM = 0`, `CANTEEN = 1`, `SCHOOL_YARD = 2`, `TOILET = 3`, `OTHER = 4`",
+						"example": [
+							"0",
+							"1"
+						]
+					},
+					"date": {
+						"type": "string",
+						"description": "ISO 8601 date string, e.g. \"2023-10-01T12:00:00Z\"",
+						"example": "2023-10-01T12:00:00Z"
+					},
+					"report_to": {
+						"type": "string",
+						"enum": [
+							"teacher",
+							"admin"
+						],
+						"description": "Who the report is addressed to, `teacher` or `admin`"
+					},
+					"other_type": {
+						"type": "string",
+						"description": "Custom types of bullying, if there are any other types of bullying that are not in the predefined types otherwise empty string",
+						"example": "Jomblo bullying"
+					},
+					"types": {
+						"items": {
+							"$ref": "#/components/schemas/BullyingType"
+						},
+						"type": "array",
+						"description": "Types of bullying, can be `PHYSICAL = 0`, `VERBAL = 1`, `SOCIAL = 2`, `CYBER = 3`, `OTHER = 4`",
+						"example": [
+							"0",
+							"1"
+						]
+					},
+					"reporter_classes": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array",
+						"description": "Classes of the reporter, e.g.",
+						"example": [
+							"10A",
+							"10B"
+						]
+					},
+					"reporter_name": {
+						"type": "string",
+						"description": "Name of the reporter, if the report is anonymous, this will be empty",
+						"example": "John Doe"
+					},
+					"status": {
+						"$ref": "#/components/schemas/BullyingReportStatus",
+						"example": "0"
+					},
+					"is_anonymous": {
+						"type": "boolean",
+						"description": "If the report is anonymous or not",
+						"example": false
+					},
+					"id": {
+						"type": "number",
+						"format": "double",
+						"description": "ID of the report",
+						"example": 1
+					}
+				},
+				"required": [
+					"is_addressed_to_me",
+					"attachment",
+					"description",
+					"has_witness",
+					"victim_name",
+					"perpetrator_name",
+					"other_location",
+					"locations",
+					"date",
+					"report_to",
+					"other_type",
+					"types",
+					"reporter_classes",
+					"reporter_name",
+					"status",
+					"is_anonymous",
+					"id"
+				],
+				"type": "object"
+			},
+			"ResponseEnvelope_BullyingReport_": {
+				"properties": {
+					"code": {
+						"type": "number",
+						"format": "double",
+						"description": "HTTP Response code"
+					},
+					"error": {
+						"type": "boolean",
+						"description": "Error flag"
+					},
+					"message": {
+						"type": "string",
+						"description": "Message"
+					},
+					"data": {
+						"$ref": "#/components/schemas/BullyingReport"
+					}
+				},
+				"required": [
+					"code",
+					"error",
+					"message",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ResponseEnvelope_BullyingReportItem_": {
+				"properties": {
+					"code": {
+						"type": "number",
+						"format": "double",
+						"description": "HTTP Response code"
+					},
+					"error": {
+						"type": "boolean",
+						"description": "Error flag"
+					},
+					"message": {
+						"type": "string",
+						"description": "Message"
+					},
+					"data": {
+						"$ref": "#/components/schemas/BullyingReportItem"
+					}
+				},
+				"required": [
+					"code",
+					"error",
+					"message",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UpdateBullyingReportStatus": {
+				"properties": {
+					"rejection_reason": {
+						"type": "string",
+						"description": "Reason for rejection, required if status is `REJECTED = 3`",
+						"example": "Not enough evidence"
+					},
+					"status": {
+						"$ref": "#/components/schemas/BullyingReportStatus"
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object"
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "Counseling API Contracts",
+		"version": "1.0.0",
+		"description": "Counseling API Contracts",
+		"license": {
+			"name": "Private"
+		},
+		"contact": {}
+	},
+	"paths": {
+		"/v1/teachers": {
+			"get": {
+				"operationId": "GetTeacherCounseling",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CounselingPaginatedResponseEnvelope_any_"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"code": 200,
+											"error": false,
+											"message": "Success",
+											"count": 100,
+											"total_items": 100,
+											"page_size": 10,
+											"next": "",
+											"previous": "",
+											"data": [
+												{
+													"id": 0,
+													"name": "string",
+													"code": "string"
+												}
+											]
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Get School Final applicant",
+				"summary": "Get all school final applicant",
+				"tags": [
+					"Teachers Counseling"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Page number",
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"default": 1,
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "Number of items per page",
+						"in": "query",
+						"name": "page_size",
+						"required": false,
+						"schema": {
+							"default": 10,
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/v1/students": {
+			"get": {
+				"operationId": "GetSectionCounseling",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CounselingPaginatedResponseEnvelope_any_"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"code": 200,
+											"error": false,
+											"message": "Success",
+											"count": 100,
+											"total_items": 100,
+											"page_size": 10,
+											"next": "",
+											"previous": "",
+											"data": [
+												{
+													"id": 0,
+													"name": "string",
+													"nis": "string",
+													"nisn": "string",
+													"section": "string",
+													"grade": "string"
+												}
+											]
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Get School Final applicant",
+				"summary": "Get all school final applicant",
+				"tags": [
+					"Student Counseling"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Page number",
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"default": 1,
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "Number of items per page",
+						"in": "query",
+						"name": "page_size",
+						"required": false,
+						"schema": {
+							"default": 10,
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/v1/sections": {
+			"get": {
+				"operationId": "GetSectionCounseling",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CounselingPaginatedResponseEnvelope_any_"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"code": 200,
+											"error": false,
+											"message": "Success",
+											"total_items": 100,
+											"page_size": 10,
+											"count": 100,
+											"next": "",
+											"previous": "",
+											"data": [
+												{
+													"id": 1,
+													"name": "Mock Name",
+													"course": "Matematika"
+												}
+											]
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Get School Final applicant",
+				"summary": "Get all school final applicant",
+				"tags": [
+					"Section Counseling"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Page number",
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"default": 1,
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "Number of items per page",
+						"in": "query",
+						"name": "page_size",
+						"required": false,
+						"schema": {
+							"default": 10,
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/v1/groups": {
+			"get": {
+				"operationId": "GetGroupCounseling",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CounselingPaginatedResponseEnvelope_any_"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"code": 200,
+											"error": false,
+											"message": "Success",
+											"count": 100,
+											"total_items": 100,
+											"page_size": 10,
+											"next": "",
+											"previous": "",
+											"data": [
+												{
+													"id": 0,
+													"name": "string",
+													"total_student": 100,
+													"active_academic": true
+												}
+											]
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Get School Final applicant",
+				"summary": "Get all school final applicant",
+				"tags": [
+					"Group Counseling"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Page number",
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"default": 1,
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "Number of items per page",
+						"in": "query",
+						"name": "page_size",
+						"required": false,
+						"schema": {
+							"default": 10,
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"post": {
+				"operationId": "CreateGroupCounseling",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ResponseEnvelope_any_"
+								}
+							}
+						}
+					}
+				},
+				"description": "Create a new Registration Path",
+				"summary": "Create a new registration path",
+				"tags": [
+					"Group Counseling"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {}
+						}
+					}
+				}
+			}
+		},
+		"/v1/groups/{id}": {
+			"get": {
+				"operationId": "GetGroupCounselingById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ResponseEnvelope_any_"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"code": 200,
+											"error": false,
+											"message": "Success",
+											"data": {
+												"id": 0,
+												"name": "string",
+												"sections": [
+													{
+														"id": 0,
+														"name": "string",
+														"course": "string"
+													}
+												],
+												"teachers": [
+													{
+														"id": 0,
+														"name": "string",
+														"code": "string"
+													}
+												],
+												"students": [
+													{
+														"id": 0,
+														"name": "string",
+														"section": "string",
+														"grade": "string",
+														"total_counseling": 0
+													}
+												],
+												"academic_year": "string"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Get a Registration Path",
+				"summary": "Get a registration path",
+				"tags": [
+					"Group Counseling"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"patch": {
+				"operationId": "UpdateGroupCounseling",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ResponseEnvelope_any_"
+								}
+							}
+						}
+					}
+				},
+				"description": "Update a Registration Path",
+				"summary": "Update a registration path",
+				"tags": [
+					"Group Counseling"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteGroupCounseling",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ResponseEnvelope_null_"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Registration Path already have applicants",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ResponseEnvelope_null_"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"code": 400,
+											"error": true,
+											"message": "Registration Path already have applicants",
+											"data": null
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Delete a Registration Path",
+				"summary": "Delete a registration path",
+				"tags": [
+					"Group Counseling"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/v1/academics": {
+			"get": {
+				"operationId": "GetSectionCounseling",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CounselingPaginatedResponseEnvelope_any_"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"code": 200,
+											"error": false,
+											"message": "Success",
+											"total_items": 100,
+											"page_size": 10,
+											"count": 100,
+											"next": "",
+											"previous": "",
+											"data": [
+												{
+													"id": 0,
+													"academic_year": "string"
+												}
+											]
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Get School Final applicant",
+				"summary": "Get all school final applicant",
+				"tags": [
+					"Academic Year Counseling"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Page number",
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"default": 1,
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "Number of items per page",
+						"in": "query",
+						"name": "page_size",
+						"required": false,
+						"schema": {
+							"default": 10,
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/v1/bullying-reports": {
+			"get": {
+				"operationId": "GetBullyingReports",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PaginatedResponseEnvelope_BullyingReportItem_"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"error": false,
+											"message": "Success",
+											"total_items": 100,
+											"page_size": 10,
+											"array_count": 2,
+											"next": "",
+											"previous": "",
+											"data": [
+												{
+													"id": 1,
+													"date": "2023-10-01T12:00:00Z",
+													"types": [
+														"0",
+														"1"
+													],
+													"other_type": "",
+													"status": "3",
+													"rejection_reason": "Not enough evidence"
+												},
+												{
+													"id": 2,
+													"date": "2023-10-01T12:00:00Z",
+													"types": [
+														"0",
+														"4"
+													],
+													"other_type": "Jomblo bullying",
+													"status": "1"
+												}
+											]
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Get bullying reports created by the current logged-in user or their students/kids/teachers, \nthe returned reports depend on the `from` parameter.",
+				"summary": "Get bullying reports",
+				"tags": [
+					"Anti-Bullying"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"default": 1,
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "page_size",
+						"required": false,
+						"schema": {
+							"default": 10,
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "academic_year_id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "Get list of report created by me, my-students, my-kids, teachers, students",
+						"in": "query",
+						"name": "from",
+						"required": false,
+						"schema": {
+							"default": "me",
+							"type": "string",
+							"enum": [
+								"my-students",
+								"my-kids",
+								"teachers",
+								"students",
+								"me"
+							]
+						}
+					},
+					{
+						"description": "Filter reports by status, can be `REVIEW = 0`, `FOLLOW_UP = 1`, `DONE = 2`, `REJECTED = 3`",
+						"in": "query",
+						"name": "status",
+						"required": false,
+						"schema": {
+							"$ref": "#/components/schemas/BullyingReportStatus"
+						}
+					}
+				]
+			},
+			"post": {
+				"operationId": "CrateBullyingReport",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ResponseEnvelope_BullyingReport_"
+								}
+							}
+						}
+					}
+				},
+				"description": "Create a new bullying report, **a report can only be created by a student or teacher**.",
+				"summary": "Create a new bullying report",
+				"tags": [
+					"Anti-Bullying"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"multipart/form-data": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"types": {
+										"type": "string",
+										"description": "Types of bullying, can be `PHYSICAL = 0`, `VERBAL = 1`, `SOCIAL = 2`, `CYBER = 3`, `OTHER = 4`, comma separated, e.g. \"0,1,2\""
+									},
+									"other_type": {
+										"type": "string",
+										"description": "Other type of bullying, if `types` contains `OTHER = 4`, this field is required otherwise will be empty string"
+									},
+									"report_to": {
+										"type": "string",
+										"description": "Who the report is addressed to, can be `teacher` or `admin`"
+									},
+									"date": {
+										"type": "string",
+										"description": "ISO 8601 date string, e.g. \"2023-10-01T12:00:00Z\""
+									},
+									"locations": {
+										"type": "string",
+										"description": "Locations of the incident, can be `CLASSROOM = 0`, `CANTEEN = 1`, `SCHOOL_YARD = 2`, `TOILET = 3`, `OTHER = 4`, comma separated, e.g. \"0,1,2\""
+									},
+									"other_location": {
+										"type": "string",
+										"description": "Other location of the incident, if `locations` contains `OTHER = 4`, this field is required otherwise will be empty string"
+									},
+									"has_witness": {
+										"type": "string",
+										"description": "Whether there are witnesses to the incident"
+									},
+									"description": {
+										"type": "string",
+										"description": "Description of the incident"
+									},
+									"is_anonymous": {
+										"type": "string",
+										"description": "Whether the report is anonymous"
+									},
+									"perpetrator_name": {
+										"type": "string",
+										"description": "Name of the perpetrator (Can be empty)"
+									},
+									"victim_name": {
+										"type": "string",
+										"description": "Name of the victim (Can be empty)"
+									},
+									"attachment": {
+										"type": "string",
+										"format": "binary",
+										"description": "Attachment (Can be empty)"
+									}
+								},
+								"required": [
+									"types",
+									"report_to",
+									"date",
+									"locations",
+									"has_witness",
+									"description",
+									"is_anonymous",
+									"perpetrator_name",
+									"victim_name"
+								]
+							}
+						}
+					}
+				}
+			}
+		},
+		"/v1/bullying-reports/{id}": {
+			"get": {
+				"operationId": "GetBullyingReportById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ResponseEnvelope_BullyingReport_"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get bullying report by ID",
+				"summary": "Get bullying report by ID",
+				"tags": [
+					"Anti-Bullying"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "ID of the report",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteBullyingReport",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ResponseEnvelope_null_"
+								}
+							}
+						}
+					}
+				},
+				"description": "Delete a bullying report by ID, the report **can only be deleted the user who created it**.",
+				"summary": "Delete a bullying report by ID",
+				"tags": [
+					"Anti-Bullying"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "ID of the report",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/v1/bullying-reports/{id}/status": {
+			"put": {
+				"operationId": "UpdateBullyingReportStatus",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ResponseEnvelope_BullyingReportItem_"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"code": 200,
+											"error": false,
+											"message": "Bullying report status updated successfully",
+											"data": {
+												"id": 1,
+												"date": "2023-10-01T12:00:00Z",
+												"types": [
+													"0"
+												],
+												"other_type": "",
+												"status": "3",
+												"rejection_reason": "Not enough evidence"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Update the status of a bullying report by its ID. **Only the user to whom the report is addressed can update the status**.",
+				"summary": "Update bullying report status",
+				"tags": [
+					"Anti-Bullying"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "ID of the report",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateBullyingReportStatus"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

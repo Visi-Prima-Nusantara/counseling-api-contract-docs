@@ -1178,14 +1178,6 @@
 										"type": "string",
 										"description": "Whether the report is anonymous"
 									},
-									"reporter_classes": {
-										"type": "string",
-										"description": "List of comma seperated classes of the reporter, e.g. \"10A, 10B\""
-									},
-									"reporter_name": {
-										"type": "string",
-										"description": "Name of the reporter (empty if anonymous)"
-									},
 									"perpetrator_name": {
 										"type": "string",
 										"description": "Name of the perpetrator (Can be empty)"
@@ -1208,8 +1200,6 @@
 									"has_witness",
 									"description",
 									"is_anonymous",
-									"reporter_classes",
-									"reporter_name",
 									"perpetrator_name",
 									"victim_name"
 								]

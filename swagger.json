@@ -1104,12 +1104,12 @@
 						}
 					},
 					{
-						"description": "Filter reports by status, can be `REVIEW = 0`, `FOLLOW_UP = 1`, `DONE = 2`, `REJECTED = 3`",
+						"description": "Filter reports by status, comma separated string can be one of `REVIEW = 0`, `FOLLOW_UP = 1`, `DONE = 2`, `REJECTED = 3`, e.g. \"0,1,2\"",
 						"in": "query",
 						"name": "status",
 						"required": false,
 						"schema": {
-							"$ref": "#/components/schemas/BullyingReportStatus"
+							"type": "string"
 						}
 					}
 				]

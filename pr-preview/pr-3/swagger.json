@@ -397,6 +397,57 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"BullyingReportResponse": {
+				"allOf": [
+					{
+						"$ref": "#/components/schemas/BullyingReport"
+					},
+					{
+						"properties": {
+							"report_to": {
+								"type": "string",
+								"enum": [
+									"teacher",
+									"admin"
+								],
+								"description": "Who the report is addressed to, `teacher` or `admin`"
+							}
+						},
+						"required": [
+							"report_to"
+						],
+						"type": "object"
+					}
+				]
+			},
+			"ResponseEnvelope_BullyingReportResponse_": {
+				"properties": {
+					"code": {
+						"type": "number",
+						"format": "double",
+						"description": "HTTP Response code"
+					},
+					"error": {
+						"type": "boolean",
+						"description": "Error flag"
+					},
+					"message": {
+						"type": "string",
+						"description": "Message"
+					},
+					"data": {
+						"$ref": "#/components/schemas/BullyingReportResponse"
+					}
+				},
+				"required": [
+					"code",
+					"error",
+					"message",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"ResponseEnvelope_BullyingReportItem_": {
 				"properties": {
 					"code": {
@@ -1204,7 +1255,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/ResponseEnvelope_BullyingReport_"
+									"$ref": "#/components/schemas/ResponseEnvelope_BullyingReportResponse_"
 								}
 							}
 						}

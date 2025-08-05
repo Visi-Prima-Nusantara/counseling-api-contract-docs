@@ -301,14 +301,6 @@
 						"description": "ISO 8601 date string, e.g. \"2023-10-01T12:00:00Z\"",
 						"example": "2023-10-01T12:00:00Z"
 					},
-					"report_to": {
-						"type": "string",
-						"enum": [
-							"teacher",
-							"admin"
-						],
-						"description": "Who the report is addressed to, `teacher` or `admin`"
-					},
 					"other_type": {
 						"type": "string",
 						"description": "Custom types of bullying, if there are any other types of bullying that are not in the predefined types otherwise empty string",
@@ -335,6 +327,14 @@
 							"10A",
 							"10B"
 						]
+					},
+					"report_to": {
+						"type": "string",
+						"enum": [
+							"teacher",
+							"admin"
+						],
+						"description": "Who the report is addressed to, `teacher` or `admin`"
 					},
 					"reporter_name": {
 						"type": "string",
@@ -367,10 +367,10 @@
 					"other_location",
 					"locations",
 					"date",
-					"report_to",
 					"other_type",
 					"types",
 					"reporter_classes",
+					"report_to",
 					"reporter_name",
 					"status",
 					"is_anonymous",
@@ -1050,7 +1050,7 @@
 						}
 					}
 				},
-				"description": "Get bullying reports created by the current logged-in user or their students/kids/teachers, \nthe returned reports depend on the `from` parameter.",
+				"description": "Get bullying reports created by the current logged-in user or their students/kids/teachers, \r\nthe returned reports depend on the `from` parameter.",
 				"summary": "Get bullying reports",
 				"tags": [
 					"Anti-Bullying"
@@ -1150,10 +1150,6 @@
 										"type": "string",
 										"description": "Other type of bullying, if `types` contains `OTHER = 4`, this field is required otherwise will be empty string"
 									},
-									"report_to": {
-										"type": "string",
-										"description": "Who the report is addressed to, can be `teacher` or `admin`"
-									},
 									"date": {
 										"type": "string",
 										"description": "ISO 8601 date string, e.g. \"2023-10-01T12:00:00Z\""
@@ -1194,7 +1190,6 @@
 								},
 								"required": [
 									"types",
-									"report_to",
 									"date",
 									"locations",
 									"has_witness",
